@@ -1,0 +1,26 @@
+header{
+    width: 100%;
+}
+ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: green;
+}
+li {
+    float: left;
+} 
+li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+.active{
+    background-color: brown;
+}
+li a:hover{
+    background-color: lightgrey;
+}
