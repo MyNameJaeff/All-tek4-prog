@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image:url("https://www.gamespot.com/a/uploads/original/1578/15789366/3755535-el6tt24wmaa0gjp.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.shopContainer{
+    margin: 1vh;
+    display: flex;
+    justify-content: space-around;
+}
+.shopContainer button{
+    margin: 0.5vh;
+    background-color: rgb(111, 111, 198);
+    color: white;
+    border: none;
+}
+.lunarContainer{
+    display: flex;
+    justify-content: center;
+}
+.lunarContainer h2{
+    font-family: 'Bombardier', sans-serif;
+    font-size: 4em;
+    color: white;
+    -webkit-text-stroke: black 1px;
+}
+.buttonContainer{
+    
+}

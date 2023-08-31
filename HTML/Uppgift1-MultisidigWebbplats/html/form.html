@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <a href="../index.html">Go back</a>
+    <form action="#" onsubmit="alert('Well done'); return false;">
+        <label for="firstName">First Name | </label>
+        <input type="text" id="firstName" name="firstName" placeholder="First Name goes here" maxlength="50"> (Max 50 Characters Allowed) <br>
+        <label for="lastName">Last Name | </label>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name goes here" maxlength="50"> (Max 50 Characters Allowed) <br>
+        <label for="email">Email ID | </label>
+        <input type="email" id="email" name="email" placeholder="email@goes.here"><br>
+        <label for="mobileNumber">First Name | </label>
+        <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="0739xxxxxx" maxlength="10"> (10 Digits Allowed) <br>
+        <label for="gender">Gender | </label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br>
+        <label for="dob">Date of Birth(DOB) | </label>
+        <input type="date"><br>
+        <label for="adress">Adress | </label>
+        <textarea id="adress" name="adress"></textarea>
+
+        <br><label for="city">City | </label>
+        <input type="text" name="city" id="city" maxlength="50">(Max 50 Characters Allowed)
+        <br><label for="pincode">Pin Code | </label>
+        <input type="number" id="pincode" name="pincode" maxlength="6">(Max 6 Numbers Allowed)
+        <br><label for="state">State | </label>
+        <input type="text" name="state" id="state" maxlength="50">(Max 50 Characters Allowed)
+        <br><label for="country">Country | </label>
+        <input type="text" id="country" name="country">
+        
+        <br><br><label for="hobbies">Hobbies:</label>
+        <br><input type="checkbox" id="drawing" name="drawing">
+        <label for="drawing">Drawing</label>
+        <input type="checkbox" id="singing" name="singing">
+        <label for="singing">Singing</label>
+        <input type="checkbox" id="dancing" name="dancing">
+        <label for="dancing">Dancing</label>
+        <input type="checkbox" id="sketching" name="sketching">
+        <label for="sketching">Sketching</label>
+        <input type="checkbox" id="others" name="others">
+        <label for="others">Others</label>
+        <input type="text" id="otherOption" name="otherOption" maxlength="50" placeholder="Ex. Teaching">(Max 50 Characters Allowed)
+        
+        <br><br><label for="qualifications">Qualifications:</label>
+        <br><input type="checkbox" id="highschool" name="highschool">
+        <label for="highschool">Highschool(10th)</label>
+        <input type="checkbox" id="higherschool" name="higherschool">
+        <label for="higherschool">Higherschool(12th)</label>
+        <input type="checkbox" id="graduation" name="graduation">
+        <label for="graduation">Graduation(Bachelors)</label>
+        <input type="checkbox" id="postgraduation" name="postgraduation">
+        <label for="postgraduation">Post graduation(masters)</label>
+        <input type="checkbox" id="phd" name="phd">
+        <label for="phd">Phd</label>
+
+        <br><br><label for="appliedCourses">Courses Applied For:</label>
+        <br><input type="radio" id="bca" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">BCA</label>
+        <input type="radio" id="bcom" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">B.Com</label>
+        <input type="radio" id="bsc" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">B.Sc</label>
+        <input type="radio" id="ba" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">BA</label>
+        <input type="radio" id="mca" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">MCA</label>
+        <input type="radio" id="mcom" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">M.Com</label>
+        <input type="radio" id="msc" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">M.Sc</label>
+        <input type="radio" id="ma" name="coursesAppliedFor">
+        <label for="coursesAppliedFor">MA</label>
+    </form>
+</body>
+</html>
