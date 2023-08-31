@@ -1,56 +1,54 @@
-var currentLunar = 10000000;
-const storeItems = {
-    Commando:10, 
-    Huntress:50,
-    Bandit:100,
-    MUL_T:250,
-    Engineer:500,
-    Artificer:1500,
-    Mercenary:2500,
-    Rex:5000,
-    Loader: 15000,
-    Acrid: 25000,
-    Captain: 50000,
-    Railgunner: 100000,
-    Void_Fiend: 250000
-};
+var currentLunar = 0;
 
-const boughtItems = {
-    Commando: 0,
-    Huntress: 0,
-    Bandit:0,
-    MUL_T:0,
-    Engineer:0,
-    Artificer:0,
-    Mercenary:0,
-    Rex:0,
-    Loader: 0,
-    Acrid: 0,
-    Captain: 0,
-    Railgunner: 0,
-    Void_Fiend: 0
-};
-
-const itemStats = {
-    Commando: 1,
-    Huntress: 3,
-    Bandit:5,
-    MUL_T:8,
-    Engineer:13,
-    Artificer:20,
-    Mercenary:40,
-    Rex:95,
-    Loader: 230,
-    Acrid: 500,
-    Captain: 1200,
-    Railgunner: 2800,
-    Void_Fiend: 7500
-}
+var Items = [];
+var ItemsNames = [];
 
 var button = document.getElementById("getLunar").addEventListener("click", getLunar);
 var lunarElement = document.getElementById("currentLunar");
 
-updateStore();
+function createBuyable(Name, Price, Stats){
+    ItemsNames.push(Name);
+    var BuyPrice = Name + "Price";
+    var Generation = Name + "Stats";
+    var OwnedAmount = Name + "Owned";
+    var Item = {};
+    Item[BuyPrice] = Price;
+    Item[Generation] = Stats;
+    Item[OwnedAmount] = 0;
+    Items.push(Item);
+
+    var Store = document.getElementById("store");
+    var Button = document.createElement("button");
+    Button.id = Name;
+    Button.onclick = function() { buyFromStore(Name); };
+    var Image = document.createElement("img");
+    Image.src = "./images/"+Name+".webp";
+    Image.alt = Name;
+    var Header = document.createElement("h2");
+    Header.id = BuyPrice;
+    Header.textContent = Price;
+
+    Button.appendChild(Image);
+    Button.appendChild(Header);
+    Store.appendChild(Button);
+}
+
+createBuyable("Commando", 10, 1);
+createBuyable("Huntress", 50, 3);
+createBuyable("Bandit", 100, 5);
+createBuyable("MUL_T", 250, 8);
+createBuyable("Engineer", 500, 13);
+createBuyable("Artificer", 1500, 20);
+createBuyable("Mercenary", 2500, 40);
+createBuyable("Rex", 5000, 95);
+createBuyable("Loader", 15000, 230);
+createBuyable("Acrid", 25000, 500);
+createBuyable("Captain", 50000, 1200);
+createBuyable("Railgunner", 100000, 2800);
+createBuyable("Void_Fiend", 250000, 7500);
+update();
+
+
 
 function getLunar(){
     currentLunar++;
@@ -60,9 +58,11 @@ function updateCash(){
     lunarElement.textContent = Math.round(currentLunar);
 }
 function updatePrices(){
-    for(const [key, value] of Object.entries(storeItems)){
-        document.getElementById(key+"Price").textContent = Math.round(value);
-    }
+    var i = 0;
+    ItemsNames.forEach(name => {
+        document.getElementById(name+"Price").textContent = Math.round(Items[i][name+"Price"]);
+        i++;
+    });
 }
 function update(){
     updateCash();
@@ -70,21 +70,21 @@ function update(){
     updatePrices();
 }
 function updateStore(){
-    for(const [key, value] of Object.entries(storeItems)){
-        if(currentLunar >= value){
-            document.getElementById(key).disabled = false;
+    for(var i = 0;i < ItemsNames.length; i++){
+        if(currentLunar >= Items[i][ItemsNames[i]+"Price"]){
+            document.getElementById(ItemsNames[i]).disabled = false;
         }else{
-            document.getElementById(key).disabled = true;
+            document.getElementById(ItemsNames[i]).disabled = true;
         }
     }
 }
 function buyFromStore(what){
     switch(what){
         case "Commando":
-            alert("Bought Commando for "+storeItems.Commando);
-            currentLunar -= storeItems.Commando;
-            boughtItems.Commando += 1;
-            storeItems.Commando *= 1.4;
+            alert("Bought Commando for "+Items[0].CommandoPrice);
+            currentLunar -= Items[0].CommandoPrice;
+            Items[0].CommandoOwned += 1;
+            Items[0].CommandoPrice *= 1.4;
             update();
             break;
         case "Huntress":
@@ -175,11 +175,15 @@ function buyFromStore(what){
             alert("You are poor");
     }
 }
+
+
 function autoGenerate(){
-    for(const [key, value] of Object.entries(boughtItems)){
-        currentLunar += itemStats[key] * value;
+    console.log("Hello");
+    for(var i = 0;i < ItemsNames.length; i++){
+        currentLunar += Items[i][ItemsNames[i]+"Stats"] * Items[i][ItemsNames[i]+"Owned"];
     }
     update();
 }
+autoGenerate();
 setInterval(autoGenerate, 2000);
 setInterval(update, 100);
