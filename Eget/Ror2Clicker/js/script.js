@@ -1,10 +1,13 @@
-var currentLunar = 10000000;
+var currentLunar = 0;
+var currentLunarPerSecond = 0;
 
 var Items = [];
 var ItemsNames = [];
+var ItemUpgrades = [];
 
 var button = document.getElementById("getLunar").addEventListener("click", getLunar);
 var lunarElement = document.getElementById("currentLunar");
+var lunarPerSecond = document.getElementById("lunarPerSecond");
 
 function createBuyable(Name, Price, Stats){
     ItemsNames.push(Name);
@@ -18,16 +21,23 @@ function createBuyable(Name, Price, Stats){
     Items.push(Item);
 
     var Store = document.getElementById("store");
+    var amoundOwned = document.createElement("h2");
+    amoundOwned.textContent = "0";
+    amoundOwned.classList = "amountOfOwned"+Name+" amountOfOwned";
+    amoundOwned.id = "amountOfOwned"+Name;
     var Button = document.createElement("button");
     Button.id = Name;
     Button.onclick = function() { buyFromStore(Name); };
+    Button.title = "Generates " + Stats/2 + " lunar coins per second";
     var Image = document.createElement("img");
     Image.src = "./images/"+Name+".webp";
     Image.alt = Name;
     var Header = document.createElement("h2");
     Header.id = BuyPrice;
+    Header.classList = "PriceHeader";
     Header.textContent = Price;
 
+    Button.appendChild(amoundOwned);
     Button.appendChild(Image);
     Button.appendChild(Header);
     Store.appendChild(Button);
@@ -56,12 +66,14 @@ function getLunar(){
 }
 function updateCash(){
     lunarElement.textContent = Math.round(currentLunar);
+    lunarPerSecond.textContent = (Math.round(currentLunarPerSecond*10)/10)/2+"/s"
 }
 function updatePrices(){
     var i = 0;
     ItemsNames.forEach(name => {
         document.getElementById(name+"Price").textContent = Math.round(Items[i][name+"Price"]);
         Items[ItemsNames.indexOf(name)][name+"Price"] = Math.round(Items[ItemsNames.indexOf(name)][name+"Price"]);
+        document.getElementById("amountOfOwned"+name).textContent = Items[ItemsNames.indexOf(name)][name+"Owned"];
         i++;
     });
 }
@@ -81,10 +93,11 @@ function updateStore(){
 }
 function buyFromStore(what){
     var priceOfWhat = what + "Price";
-    alert("Bought "+what+" for "+Items[ItemsNames.indexOf(what)][priceOfWhat]);
+    //alert("Bought "+what+" for "+Items[ItemsNames.indexOf(what)][priceOfWhat]);
     currentLunar -= Items[ItemsNames.indexOf(what)][priceOfWhat];
     Items[ItemsNames.indexOf(what)][what+"Owned"] += 1;
     Items[ItemsNames.indexOf(what)][priceOfWhat] *= 1.4;
+    currentLunarPerSecond += Items[ItemsNames.indexOf(what)][what+"Stats"];
     update();
 }
 

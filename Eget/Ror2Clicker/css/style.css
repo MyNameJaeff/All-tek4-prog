@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Bombardier', sans-serif;
 }
 body{
     background-image:url("https://www.gamespot.com/a/uploads/original/1578/15789366/3755535-el6tt24wmaa0gjp.jpg");
@@ -18,16 +19,76 @@ body{
     color: white;
     border: none;
 }
+
+.shopContainer button .PriceHeader{
+    background-color: aliceblue;
+    color: black;
+    font-size: 2em;
+}
 .lunarContainer{
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 8vh;
 }
-.lunarContainer h2{
-    font-family: 'Bombardier', sans-serif;
+
+.lunarContainer h2, .lunarPerSecond{
     font-size: 4em;
     color: white;
     -webkit-text-stroke: black 1px;
 }
-.buttonContainer{
-    
+.lunarPerSecond{
+    position: absolute;
+    margin-top: 13vh;
+    font-size: 2em;
 }
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+*:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.getLunar {
+    display: inline-block;
+    padding: 45px 30px;
+    font-size: 60px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4d4ace;
+    border: none;
+    border-radius: 100%;
+    box-shadow: 0 9px #999;
+}
+.menuOpen{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+.menuOpen button{
+    background-color: #355b98;
+    border: none;
+}
+.getLunar:hover, .menuOpen:hover {background-color: #4273c2}  
+.getLunar:active, .menuOpen:active {
+    background-color: #508ceb;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+.amountOfOwned{
+    color: white;
+    position: absolute;
+    padding: 0.2%;
+}
+.menuOpen div {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 3px;
+  }

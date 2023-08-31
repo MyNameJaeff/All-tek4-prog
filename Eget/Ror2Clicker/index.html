@@ -13,10 +13,20 @@
         </div>
     </div>
     <div class="lunarContainer">
-        <h2 id="currentLunar">0</h2>
+        <h2 id="currentLunar" class="currentLunar">0</h2>
+        <img src="./images/Lunar_Coin.png" height="100%" class="lunarIcon"><br>
+        <h3 class="lunarPerSecond" id="lunarPerSecond">0/s</h3>
     </div>
-    <button id="getLunar">Press</button>
-
+    <div class="buttonContainer">
+        <button id="getLunar" class="getLunar">Earn</button>
+    </div>
+    <div class="menuOpen">
+        <button onclick="flipOutMenu()">
+            <div></div>
+            <div></div>
+            <div></div> 
+        </button>
+    </div>
     
     <script src="./js/script.js"></script>
 </body>
