@@ -92,7 +92,7 @@ createBuyable("Captain", 50000, 1200);
 createBuyable("Railgunner", 100000, 2800);
 createBuyable("Void_Fiend", 250000, 7500);
 
-createUpgrades("Commando", 10, 1);
+//createUpgrades("Commando", 10, 1);
 update();
 
 
@@ -103,7 +103,7 @@ function getLunar(){
 }
 function updateCash(){
     lunarElement.textContent = Math.round(currentLunar);
-    lunarPerSecond.textContent = (Math.round(currentLunarPerSecond*10)/10)/2+"/s"
+    lunarPerSecond.textContent = (Math.round(currentLunarPerSecond*10)/10)/2+"/s";
 }
 function updatePrices(){
     var i = 0;
@@ -142,15 +142,13 @@ function buyFromStore(what){
     currentLunar -= Items[ItemsNames.indexOf(what)][priceOfWhat];
     Items[ItemsNames.indexOf(what)][what+"Owned"] += 1;
     Items[ItemsNames.indexOf(what)][priceOfWhat] *= 1.4;
-    console.log(ItemUpgrades);
-    console.log(what+"Upgrade"+"UpgradesOwned");
-    console.log(ItemUpgrades[UpgradeNames.indexOf("Upgrade"+what)][what+"Upgrade"+"UpgradesOwned"]);
-    if(ItemUpgrades[UpgradeNames.indexOf(what+"Upgrade")][what+"Upgrade"+"UpgradesOwned"] > 0){
+    /*if(ItemUpgrades[UpgradeNames.indexOf(what+"Upgrade")][what+"Upgrade"+"UpgradesOwned"] > 0){
         thing = Items[ItemsNames.indexOf(what+"Upgrade")][what+"Stats"] * ItemUpgrades[UpgradeNames.indexOf("Upgrade"+what)]["Upgrade"+what+"Stats"];
     }
-    else{
-        thing = Items[ItemsNames.indexOf(what)][what+"Stats"];
-    }
+    else{*/
+    currentLunarPerSecond += Items[ItemsNames.indexOf(what)][what+"Stats"];
+    thing = Items[ItemsNames.indexOf(what)][what+"Stats"];
+    //}
     currentLunar += thing;
     update();
 }
