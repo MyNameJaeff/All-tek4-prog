@@ -1,15 +1,28 @@
 var currentLunar = 0;
 var currentLunarPerSecond = 0;
 
-var Items = [];
-var ItemsNames = [];
-var ItemUpgrades = [];
-var UpgradeNames = [];
+var createdCharacters = [];
 
 var button = document.getElementById("getLunar").addEventListener("click", getLunar);
 var lunarElement = document.getElementById("currentLunar");
 var lunarPerSecond = document.getElementById("lunarPerSecond");
 
+class Charater {
+    constructor(Name, Price, Stats, Upgrades){
+        this.Name = Name;
+        this.Price = Price;
+        this.Stats = Stats;
+        this.Upgrades = Upgrades;
+    }
+    pushCharacter(){
+        var charater = {name: this.Name, price:this.Price, stats: this.Stats, upgrades: this.Upgrades};
+        createdCharacters.push(charater);
+    }
+
+}
+const Commando = new Charater("Commando", 10, 1, {Upgrade1: 2, Upgrade2: 2});
+Commando.pushCharacter();
+console.log(createdCharacters);
 function createBuyable(Name, Price, Stats){
     ItemsNames.push(Name);
     var BuyPrice = Name + "Price";
