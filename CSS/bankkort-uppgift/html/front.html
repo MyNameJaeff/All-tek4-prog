@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Front of card</title>
+</head>
+<body>
+    <a href="../index.html">Go back</a>
+    <h1>Payment Information</h1>
+    <div>
+        <div>
+            <div class="creditCardFront">
+                <div>
+                    <div class="imagesBox">
+                        <img src="../img/chip.png" alt="Credit card chip">
+                        <img src="../img/discoverIcon.png" alt="Discover card icon">
+                    </div>
+                    <div class="cardNrBox">
+                        <h4>card number</h4>
+                        <h2>6011 0009 9013 9424</h2>
+                    </div>
+                    <div class="nameExp">
+                        <div>
+                            <h4>cardholder name</h4>
+                            <h3>BYTE WEBSTER</h3>
+                        </div>
+                        <div>
+                            <h4>expiration</h4>
+                            <div>
+                                <h5 class="validThru">Valid THRU</h5>
+                                <h2> > </h2>
+                                <h2>12/24</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="formDiv">
+            <form action="#">
+                <label for="name">Name</label><br>
+                <input type="text" id="name"><br><br>
+                <label for="cardnr">Card Number</label><button id="genRandom">Generate random Card</button><br>
+                <input type="text" id="cardnr"><br><br>
+                <div class="formSubDiv">
+                    <div>
+                        <label for="experation">Experation (mm/yy)</label><br>
+                        <input type="text" id="experation"><br>
+                    </div>
+                    <div>
+                        <label for="securityCode">Security Code</label><br>
+                        <input type="text" id="securityCode">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
