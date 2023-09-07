@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+nav{
+    display: flex;
+    background-color: lightblue;
+}
+nav>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8%;
+    font-size: 1.5em;
+    border-bottom: 5px solid black;
+}
+main{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 88%;
+}
+main>div{
+    padding: 1%;
+    height: 100%;
+}
+main>div:nth-child(1){
+    flex: 4;
+    background-color: aqua;
+}
+main>div:nth-child(2){
+    flex: 4;
+    width: 10%;
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.skolhändelser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
+}
+main>div:nth-child(3){
+    flex: 2;
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: red;
+}
+table, td{
+    border: 2px solid black;
+}
+td{
+    padding: 3%;
+}
+table{
+    width: 30%;
+    border-collapse: collapse;
+}
