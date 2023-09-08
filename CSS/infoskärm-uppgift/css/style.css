@@ -19,7 +19,7 @@ nav>div{
     justify-content: space-between;
     align-items: center;
     padding: 0.8%;
-    font-size: 1.4em;
+    font-size: 3dvh;
     border-bottom: 5px solid black;
 }
 nav>div>div:nth-child(1){
@@ -70,7 +70,7 @@ main>div:nth-child(2){
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 main>div:nth-child(2)>article:nth-child(1){
     display: flex;
@@ -78,14 +78,15 @@ main>div:nth-child(2)>article:nth-child(1){
 }
 .mentorspunkter{
     width: 100%;
-    font-size: 1.7em;
-    line-height: 1.4em;
+    font-size: 3.0dvh;
+    line-height: 3.8dvh;
     height: 100%;
     overflow: hidden;
 }
 .mentorspunkter>h2{
     border-bottom: white 2px solid;
     padding-bottom: 1%;
+    padding-left: 1dvh;
     margin-bottom: 1%;
     width: 50%;
 }
@@ -120,10 +121,13 @@ table, td{
 td{
     padding: 3%;
 }
+.news>div>h2{
+    font-size: 4dvh;
+}
 table{
-    width: 60%;
+    width: 35dvh;
     border-collapse: collapse;
-    font-size: 1.5em;
+    font-size: 2.5dvh;
     border-radius: 5%;
 }
 .imageBox{
@@ -141,7 +145,7 @@ table{
     width: 90%;
 }
 .väder{
-    font-size: 1.5em;
+    font-size: 3dvh;
     padding-bottom: 5%;
 }
 .väder>img{
@@ -183,7 +187,7 @@ table{
     width: 18%;
 }
 .köksansvarig{
-    font-size: 1.5em;
+    font-size: 3dvh;
     display: flex;
     justify-content: center;
     align-items: center;
