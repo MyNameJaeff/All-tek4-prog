@@ -31,6 +31,7 @@ main>div{
 main>div:nth-child(1){
     flex: 4;
     background-color: aqua;
+    border-right: 5px solid black;
 }
 main>div:nth-child(2){
     flex: 4;
@@ -40,11 +41,13 @@ main>div:nth-child(2){
     flex-direction: column;
     justify-content: space-between;
 }
+.mentorspunkter{
+    font-size: 1.9em;
+}
 .skolhändelser{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: aliceblue;
 }
 main>div:nth-child(3){
     flex: 2;
@@ -52,7 +55,17 @@ main>div:nth-child(3){
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     background-color: red;
+    border-left: 5px solid black;
+}
+main>div:nth-child(3)>div{
+    background-color: wheat;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 table, td{
     border: 2px solid black;
@@ -61,6 +74,67 @@ td{
     padding: 3%;
 }
 table{
-    width: 30%;
+    width: 60%;
     border-collapse: collapse;
+    font-size: 1.5em;
+    background-color: aliceblue;
+}
+.imageBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.imageBox>img{
+    width: 70%;
+}
+.news>article{
+    font-size: 1.5em;
+}
+.väder{
+    font-size: 1.5em;
+    padding-bottom: 5%;
+}
+.väder>img{
+    width: 60%;
+}
+.väder>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.lunch{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 1.5em;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+.lunch>div:nth-child(2){
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.dagensLunch>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dagensLunch>div:nth-child(1){
+    padding-bottom: 10%;
+}
+.lunchikoner{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 5%;
+}
+.lunchikoner>img{
+    width: 18%;
+}
+.köksansvarig{
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
