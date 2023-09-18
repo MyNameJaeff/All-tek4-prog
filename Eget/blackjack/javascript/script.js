@@ -98,6 +98,7 @@ function appendCards(array, who){
             i++;
         }
     });
+    
 }
 appendCards(playerHand, "Player");
 appendCards(dealerHand, "Dealer");

@@ -11,17 +11,26 @@ header{
     margin: 0;
     width: 100%;
 }
-ul {
+ul{
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: green;
+    display: flex;
+    justify-content: space-between;
 }
-li {
-    float: left;
-} 
+ul > div{
+    width: 20%;
+    margin-left: 1%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+ul>li:last-child{
+    margin-right: 2%;
+}
 li a {
     display: block;
     padding: 10px;
