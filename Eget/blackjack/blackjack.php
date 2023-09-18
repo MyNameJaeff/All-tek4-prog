@@ -32,7 +32,7 @@ $dealerTotal = array();
             echo "You bet " . $betAmount . "<br>";
             $i = 0;
             foreach($cardDeck as $value){
-                echo("<img src='images/".$cardDeck[$i][0].".png' width='5%' height='5%'>");
+                echo("<img src='images/".$cardDeck[$i][0].".png' class='card'>");
                 echo($cardDeck[$i][0]." -> ". $cardDeck[$i][1]."<br>");
                 $i++;
             }
@@ -49,7 +49,7 @@ $dealerTotal = array();
         }
 
         for($i = 0; $i < 2; $i++){
-            echo("<img src='images/".$playerHand[$i][0].".png' width='5%' height='5%'>");
+            echo("<img src='images/".$playerHand[$i][0].".png' class='card'>");
             echo($playerHand[$i][0]." -> ". $playerHand[$i][1]."<br>");
             $playerTotal[$i] += $playerHand[$i][1];
         }
@@ -70,9 +70,9 @@ $dealerTotal = array();
 
         for($i = 0; $i < 2; $i++){
             if($i == 1){
-                echo("<img src='images/Back of Card.png' width='5%' height='5%'>");
+                echo("<img src='images/Back of Card.png' class='card'>");
             }else{
-                echo("<img src='images/".$dealerHand[$i][0].".png' width='5%' height='5%'>");
+                echo("<img src='images/".$dealerHand[$i][0].".png' class='card'>");
             }            
             echo($dealerHand[$i][0]." -> ". $dealerHand[$i][1]."<br>");
             $dealerTotal[$i] += $dealerHand[$i][1];
@@ -97,19 +97,16 @@ $dealerTotal = array();
             echo("Hola");
         }
     }
-    if(array_key_exists("button1", $_POST)){
+    if(isset($_POST['button1'])){
         draw_another("Player");
-    }else if(array_key_exists("button2", $_POST)){
+    }else if(isset($_POST['button2'])){
         draw_another("Dealer");
     }
     
     ?>
-    <form method="post" onsubmit="return false;">
-        <input type="submit" name="button1"
-                class="button" value="Player" />
-        <input type="submit" name="button2"
-                class="button" value="Dealer" />
-    </form>
+    <div id="playTable">
+    </div>
+    <button name="test" id="test" onclick="">Test me</button>
 </main>
 
 <script>

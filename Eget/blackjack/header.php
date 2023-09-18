@@ -9,9 +9,9 @@
 <body>
     <header>
         <ul>
-            <li><a href="index.php" id="main">Main</a></li>
-            <li><a href="blackjack.php" id="blackjack">Blackjack</a></li>
-            <li><a href="poker.php" id="poker">Poker</a></li>
-            <li style="float:right;padding-right:2%;"><a href="#">User</a></li>
+            <li><a href="./index.php" id="main">Main</a></li>
+            <li><a href="./blackjack.php" id="blackjack">Blackjack</a></li>
+            <li><a href="./poker.php" id="poker">Poker</a></li>
+            <li style="float:right;padding-right:2%;"><a href="./#">User</a></li>
         </ul>
     </header>

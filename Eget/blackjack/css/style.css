@@ -34,3 +34,7 @@ li a {
 li a:hover{
     background-color: lightgrey;
 }
+.card{
+    width: 5%;
+    height: 5%;
+}
