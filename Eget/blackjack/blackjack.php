@@ -22,91 +22,16 @@ $dealerTotal = array();
         <input type="numbers"  id="betAmount" name="betAmount" required>
         <input type="submit" value="Submit" name="submit">
     </form><br>
-    <?php
-    shuffle($cardDeck);
-    if(isset($_POST["submit"])){
-        $betAmount = $_POST['betAmount'];
-        if($betAmount <= 0){
-            header("LOCATION: blackjack.php");
-        }else{
-            echo "You bet " . $betAmount . "<br>";
-            $i = 0;
-            foreach($cardDeck as $value){
-                echo("<img src='images/".$cardDeck[$i][0].".png' class='card'>");
-                echo($cardDeck[$i][0]." -> ". $cardDeck[$i][1]."<br>");
-                $i++;
-            }
-        }
-        echo("<hr>");
-        draw_hand();
-    }
-    function draw_hand(){
-        global $cardDeck, $playerHand, $playerTotal, $dealerHand, $dealerTotal;
-
-        for($i = 0; $i < 7; $i++){
-            array_push($playerHand,array_pop($cardDeck));    
-            array_push($dealerHand, array_pop($cardDeck));
-        }
-
-        for($i = 0; $i < 2; $i++){
-            echo("<img src='images/".$playerHand[$i][0].".png' class='card'>");
-            echo($playerHand[$i][0]." -> ". $playerHand[$i][1]."<br>");
-            $playerTotal[$i] += $playerHand[$i][1];
-        }
-        $playerTotal[2] = $playerTotal[0] + $playerTotal[1];
-        if($playerTotal[0] == 11 || $playerTotal[1] == 11){
-            $playerTotal[3] = $playerTotal[2] - 10;
-            echo($playerTotal[2]."(".($playerTotal[3]).")");
-        }
-        else{
-            echo($playerTotal[2]);
-        }
-        
-        if($playerTotal[2] == 21){
-            echo("BLACKJACK!!!");
-        }
-        echo("<hr>");
-
-
-        for($i = 0; $i < 2; $i++){
-            if($i == 1){
-                echo("<img src='images/Back of Card.png' class='card'>");
-            }else{
-                echo("<img src='images/".$dealerHand[$i][0].".png' class='card'>");
-            }            
-            echo($dealerHand[$i][0]." -> ". $dealerHand[$i][1]."<br>");
-            $dealerTotal[$i] += $dealerHand[$i][1];
-        }
-        $dealerTotal[2] = $dealerTotal[0] + $dealerTotal[1];
-        
-        if($dealerTotal[0] == 11 || $dealerTotal[1] == 11){
-            $dealerTotal[3] = $dealerTotal[2] - 10;
-            echo($dealerTotal[2]."(".($dealerTotal[3]).")");
-        }
-        else{
-            echo($dealerTotal[2]);
-        }
-        if($dealerTotal[2] == 21){
-            echo("BLACKJACK!!!");
-        }
-        echo("<hr>");
-    }
-    function draw_another($who){
-        global $cardDeck, $playerHand, $playerTotal, $dealerHand, $dealerTotal;
-        if($who == "Player"){
-            echo("Hola");
-        }
-    }
-    if(isset($_POST['button1'])){
-        draw_another("Player");
-    }else if(isset($_POST['button2'])){
-        draw_another("Dealer");
-    }
-    
-    ?>
     <div id="playTable">
+        <div id="playerSide">
+            <div id="playerCards"></div>
+        </div>
+        <hr></hr>
+        <div id="dealerSide">
+        </div>
     </div>
-    <button name="test" id="test" onclick="">Test me</button>
+    <button name="hit" id="hit" onclick="Hit('Player')">Hit</button>
+    <button name="stand" id="stand" onclick="Stand('Player')">Stand</button>
 </main>
 
 <script>
