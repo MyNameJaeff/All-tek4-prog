@@ -17,14 +17,13 @@ $dealerTotal = array();
 ?>
 <main>
     <h1>Weclome to blackjack</h1>
-    <form method="POST">
+    <form method="POST" onsubmit="StartGame(); return false;">
         <label for="betAmount">How much to bet (>0):</label>
-        <input type="numbers"  id="betAmount" name="betAmount" required>
+        <input type="numbers"  id="betAmount" name="betAmount" required >
         <input type="submit" value="Submit" name="submit">
     </form><br>
     <div id="playTable">
         <div id="playerSide">
-            <div id="playerCards"></div>
         </div>
         <hr></hr>
         <div id="dealerSide">
@@ -32,6 +31,8 @@ $dealerTotal = array();
     </div>
     <button name="hit" id="hit" onclick="Hit('Player')">Hit</button>
     <button name="stand" id="stand" onclick="Stand('Player')">Stand</button>
+    <button name="split" id="split" onclick="Split()" disabled>Split</button>
+    <button name="restart" id="restart" onclick="Restart()" disabled>Restart</button>
 </main>
 
 <script>
