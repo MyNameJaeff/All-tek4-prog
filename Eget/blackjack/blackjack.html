@@ -26,18 +26,31 @@
             <input type="numbers" id="betAmount" name="betAmount" required>
             <input type="submit" value="Submit" name="submit">
         </form><br>
-        <div id="playTable">
-            <div id="playerSide">
-            </div>
-            <hr>
-            </hr>
-            <div id="dealerSide">
-            </div>
-        </div>
         <button name="hit" id="hit" onclick="Hit('Player')">Hit</button>
         <button name="stand" id="stand" onclick="Stand('Player')">Stand</button>
         <button name="split" id="split" onclick="Split()" disabled>Split</button>
         <button name="restart" id="restart" onclick="Restart()" disabled>Restart</button>
+        <div id="playTable">
+            <div id="playerSide">
+                <div id="playerSideDiv">
+
+                </div>
+                <div id="playerScoreDiv">
+                    <p id="playerScore"></p>
+                </div>
+            </div>
+            <hr>
+            </hr>
+            <div id="dealerSide">
+                <div id="dealerSideDiv">
+
+                </div>
+                <div id="dealerScoreDiv">
+                    <p id="dealerScore"></p>
+                </div>
+            </div>
+        </div>
+        
     </main>
 
     <script>

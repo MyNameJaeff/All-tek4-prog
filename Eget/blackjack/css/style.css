@@ -1,17 +1,20 @@
-html{
+html {
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
     padding: 0;
     margin: 0;
 }
-header{
+
+header {
     padding: 0;
     margin: 0;
     width: 100%;
 }
-ul{
+
+ul {
     width: 100%;
     list-style-type: none;
     margin: 0;
@@ -21,35 +24,63 @@ ul{
     display: flex;
     justify-content: space-between;
 }
-ul > div{
+
+ul>div {
     width: 20%;
     margin-left: 1%;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
 }
-ul>li:last-child{
+
+ul>li:last-child {
     margin-right: 2%;
 }
+
 li a {
     display: block;
     padding: 10px;
     color: white;
     text-decoration: none;
 }
-.active{
+
+.active {
     background-color: brown;
 }
-li a:hover{
+
+li a:hover {
     background-color: lightgrey;
 }
-.card{
-    width: 5%;
-    height: 5%;
+
+.card {
+    width: 10vw;
 }
-.playerSide{
-    background-color: aqua;
+
+div>div>div:not(:last-child) {
+    height: 100%;
 }
-.playerSide, .dealerSide{
+
+img>.unknown {
+    width: 10%;
+}
+
+div>figure {
+    height: 100%;
+}
+#playerSide, #dealerSide{
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#playerSideDiv, #dealerSideDiv{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+#playerScoreDiv, #dealerScoreDiv{
+    width: 20%;
+}
+#playerScoreDiv>p, #dealerScoreDiv>p{
+    width: 80%;
 }
