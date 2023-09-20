@@ -90,44 +90,54 @@ function appendCards(array, who) {
   }
   array.forEach((element) => {
     if (who == "Player") {
-      var cardBox = document.createElement("div");
-      var card = document.createElement("p");
+      var box = document.createElement("div");
+      var cardBox = document.createElement("figure");
+      var card = document.createElement("figcaption");
       var cardImg = document.createElement("img");
       cardImg.src = "images/" + element[0][0] + ".png";
-      cardImg.alt = "A";
+      cardImg.alt = element[0][0];
       cardImg.classList = "card";
       card.textContent = element;
       cardBox.appendChild(card);
       cardBox.appendChild(cardImg);
-      playerSide.appendChild(cardBox);
+      box.appendChild(cardBox);
+      playerSide.appendChild(box);
       playerTotal += element[0][1];
       if (element[0][1] == 11) {
         aceplayerTotal += 1;
       }
       i++;
     } else if (who == "Dealer" && i != 1) {
-      var card = document.createElement("p");
+      var box = document.createElement("div");
+      var cardBox = document.createElement("figure");
+      var card = document.createElement("figcaption");
       var cardImg = document.createElement("img");
       cardImg.src = "images/" + element[0][0] + ".png";
-      cardImg.alt = "A";
+      cardImg.alt = element[0][0];
       cardImg.classList = "card";
       card.textContent = element;
-      dealerSide.appendChild(card);
-      dealerSide.appendChild(cardImg);
+      cardBox.appendChild(card);
+      cardBox.appendChild(cardImg);
+      box.appendChild(cardBox);
+      dealerSide.appendChild(box);
       dealerTotal += element[0][1];
       if (element[0][1] == 11) {
         acedealerTotal += 1;
       }
       i++;
     } else if (who == "Dealer" && i == 1) {
-      var card = document.createElement("p");
+      var box = document.createElement("div");
+      var cardBox = document.createElement("figure");
+      var card = document.createElement("figcaption"); // Remove
       var cardImg = document.createElement("img");
       cardImg.src = "images/Back of Card.png";
-      cardImg.alt = "A";
+      cardImg.alt = "unknown";
       cardImg.classList = "card";
-      card.textContent = element;
-      dealerSide.appendChild(card);
-      dealerSide.appendChild(cardImg);
+      card.textContent = element; // Remove
+      cardBox.appendChild(card); // Remove
+      cardBox.appendChild(cardImg);
+      box.appendChild(cardBox);
+      dealerSide.appendChild(box);
       dealerTotal += element[0][1];
       if (element[0][1] == 11) {
         acedealerTotal += 1;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css?v=1" class="stylesheet">
+    <title>Gambla time</title>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <div>
+                <li><a href="./index.html" id="main">Main</a></li>
+                <li><a href="./blackjack.html" id="blackjack">Blackjack</a></li>
+                <li><a href="./poker.html" id="poker">Poker</a></li>
+            </div>
+            <li><a href="./#">User</a></li>
+        </ul>
+    </header>
+    <main>
+        <h1>Weclome to blackjack</h1>
+        <form method="POST" onsubmit="StartGame(); return false;">
+            <label for="betAmount">How much to bet (>0):</label>
+            <input type="numbers" id="betAmount" name="betAmount" required>
+            <input type="submit" value="Submit" name="submit">
+        </form><br>
+        <div id="playTable">
+            <div id="playerSide">
+            </div>
+            <hr>
+            </hr>
+            <div id="dealerSide">
+            </div>
+        </div>
+        <button name="hit" id="hit" onclick="Hit('Player')">Hit</button>
+        <button name="stand" id="stand" onclick="Stand('Player')">Stand</button>
+        <button name="split" id="split" onclick="Split()" disabled>Split</button>
+        <button name="restart" id="restart" onclick="Restart()" disabled>Restart</button>
+    </main>
+
+    <script>
+        const current = document.getElementById("blackjack");
+        current.classList.add("active");
+    </script>
+    <footer>
+        Legal mumbo jumbo goes here
+    </footer>
+    <script src="./javascript/script.js"></script>
+</body>
+
+</html>
