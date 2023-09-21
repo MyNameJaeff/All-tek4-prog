@@ -12,11 +12,11 @@
     <header>
         <ul>
             <div>
-                <li><a href="./index.html" id="main">Main</a></li>
-                <li><a href="./blackjack.html" id="blackjack">Blackjack</a></li>
-                <li><a href="./poker.html" id="poker">Poker</a></li>
+                <li><a href="index.php" id="main">Main</a></li>
+                <li><a href="./html/blackjack.html" id="blackjack">Blackjack</a></li>
+                <li><a href="./html/poker.html" id="poker">Poker</a></li>
             </div>
-            <li><a href="./#">User</a></li>
+            <li><a href="./php/userLoginPage.php">User</a></li>
         </ul>
     </header>
     <main>

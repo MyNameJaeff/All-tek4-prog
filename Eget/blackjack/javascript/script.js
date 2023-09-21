@@ -71,6 +71,7 @@ for (let i = 0; i < 2; i++) {
   arr.push(cardDeck[1]);
   dealerHand.push(arr);
 }
+
 let table = document.getElementById("playTable");
 let dealerSide = document.getElementById("dealerSideDiv");
 let playerSide = document.getElementById("playerSideDiv");
@@ -81,7 +82,6 @@ var dealerTot = document.getElementById("dealerScore");
 function appendCards(array, who) {
   let i = 0;
 
-  console.log(playerTot, dealerTot);
   switch (who) {
     case "Player":
       playerSide.innerHTML = "";
@@ -103,7 +103,11 @@ function appendCards(array, who) {
       cardImg.src = "images/" + element[0][0] + ".png";
       cardImg.alt = element[0][0];
       cardImg.classList = "card";
-      card.textContent = element;
+      if (element[0][1] == 11) {
+        card.textContent = element[0][0] + ", " + element[0][1] + " (1)";
+      } else {
+        card.textContent = element[0][0] + ", " + element[0][1];
+      }
       cardBox.appendChild(card);
       cardBox.appendChild(cardImg);
       box.appendChild(cardBox);
@@ -121,7 +125,11 @@ function appendCards(array, who) {
       cardImg.src = "images/" + element[0][0] + ".png";
       cardImg.alt = element[0][0];
       cardImg.classList = "card";
-      card.textContent = element;
+      if (element[0][1] == 11) {
+        card.textContent = element[0][0] + ", " + element[0][1] + " (1)";
+      } else {
+        card.textContent = element[0][0] + ", " + element[0][1];
+      }
       cardBox.appendChild(card);
       cardBox.appendChild(cardImg);
       box.appendChild(cardBox);
@@ -134,13 +142,15 @@ function appendCards(array, who) {
     } else if (who == "Dealer" && i == 1) {
       var box = document.createElement("div");
       var cardBox = document.createElement("figure");
-      //var card = document.createElement("figcaption"); // Remove
+      var card = document.createElement("figcaption");
+      card.id = "unknownCaption";
       var cardImg = document.createElement("img");
+      cardImg.id = "unknownCard";
       cardImg.src = "images/Back of Card.png";
       cardImg.alt = "unknown";
       cardImg.classList = "card unknown";
-      //card.textContent = element; // Remove
-      //cardBox.appendChild(card); // Remove
+      card.textContent = element; //"Unknown Card";
+      cardBox.appendChild(card);
       cardBox.appendChild(cardImg);
       box.appendChild(cardBox);
       dealerSide.appendChild(box);
@@ -162,12 +172,7 @@ function appendCards(array, who) {
         playerTot.textContent = "Player: " + playerTotal;
       }
     } else {
-      if (playerTotal == 21 && playerHand.length == 2) {
-        playerTot.textContent =
-          "Player: " + playerTotal + " which is a BLACKJACK!";
-        playerTot.style = "background-color:yellow;";
-        Won("Player");
-      } else if (playerTotal - 11 + aceplayerTotal > 21) {
+      if (playerTotal - 11 + aceplayerTotal > 21) {
         playerTot.textContent =
           "Player: " + (playerTotal - 11 + aceplayerTotal);
         Lost("Dealer");
@@ -190,19 +195,14 @@ function appendCards(array, who) {
           "Dealer: " + dealerTotal + " which is over 21! Dealer busts";
         dealerTot.style = "background-color:red;";
         Lost("Dealer");
-      } else if (dealerTotal >= 17 && playerStand == true) {
+      } else if (dealerTotal > 17 && playerStand == true) {
         dealerTot.textContent = "Dealer: " + dealerTotal;
         Stand("Other");
-      } else if(playerStand){
+      } else if (playerStand) {
         dealerTot.textContent = "Dealer: " + dealerTotal;
       }
     } else {
-      if (dealerTotal == 21 && dealerHand.length == 2) {
-        dealerTot.textContent =
-          "Dealer: " + dealerTotal + " which is a BLACKJACK!";
-        dealerTot.style = "background-color:yellow;";
-        Won("Dealer");
-      } else if (dealerTotal >= 17 && playerStand) {
+      if (dealerTotal >= 17 && playerStand) {
         dealerTot.textContent =
           "Dealer: " + (dealerTotal - 11 + acedealerTotal);
         Stand("Other");
@@ -220,7 +220,7 @@ function appendCards(array, who) {
         dealerTot.textContent =
           "Dealer: " + (dealerTotal - 11 + acedealerTotal);
         Stand("Other");
-      } else if(playerStand){
+      } else if (playerStand) {
         dealerTot.textContent =
           "Dealer: " +
           dealerTotal +
@@ -230,6 +230,19 @@ function appendCards(array, who) {
       }
     }
     dealer.appendChild(dealerTot);
+  }
+  if (playerHand.length == 2 && dealerHand.length == 2) {
+    if (playerTotal == 21 && playerHand.length == 2) {
+      playerTot.textContent =
+        "Player: " + playerTotal + " which is a BLACKJACK!";
+      playerTot.style = "background-color:yellow;";
+      Won("Player");
+    } else if (dealerTotal == 21 && dealerHand.length == 2) {
+      dealerTot.textContent =
+        "Dealer: " + dealerTotal + " which is a BLACKJACK!";
+      dealerTot.style = "background-color:yellow;";
+      Won("Dealer");
+    }
   }
 }
 function drawExtraCard(who) {
@@ -252,16 +265,15 @@ function Hit(who) {
 }
 function Stand(who) {
   if (who == "Player") {
-    console.log(dealerTotal);
     DisableButtons();
     if (dealerTotal < 17 && dealerTotal - 11 + acedealerTotal < 17) {
       playerStand = true;
+      revealDealerCard();
       drawExtraCard("Dealer");
     } else {
+      revealDealerCard();
       Stand("Other"); // REVEAL THE DEALERS CARDS WHEN THIS
     }
-  } else if (who == "Dealer") {
-    drawExtraCard("Player");
   } else {
     let hitButton = document.getElementById("hit");
     hitButton.disabled = true;
@@ -274,7 +286,19 @@ function Stand(who) {
     }
   }
 }
+function revealDealerCard() {
+  let caption = document.getElementById("unknownCaption");
+  let image = document.getElementById("unknownCard");
+  image.src = "images/" + dealerHand[1][0][0] + ".png";
+  if (dealerHand[1][0][1] == 11) {
+    caption.textContent =
+      dealerHand[1][0][0] + ", " + dealerHand[1][0][1] + "(1)";
+  } else {
+    caption.textContent = dealerHand[1][0][0] + ", " + dealerHand[1][0][1];
+  }
+}
 function Lost(who) {
+  revealDealerCard();
   if (who == "Player") {
     alert("Player lost");
   } else {
@@ -283,10 +307,12 @@ function Lost(who) {
   DisableButtons();
 }
 function Draw() {
+  revealDealerCard();
   alert("It was a draw");
   DisableButtons();
 }
 function Won(who) {
+  revealDealerCard();
   if (who == "Player") {
     alert("Player won");
   } else {
@@ -300,6 +326,8 @@ function Restart() {
 }
 function StartGame() {
   document.getElementById("restart").disabled = true;
+  document.getElementById("betAmount").disabled = true;
+  document.getElementById("submit").disabled = true;
   appendCards(playerHand, "Player");
   appendCards(dealerHand, "Dealer");
 }
