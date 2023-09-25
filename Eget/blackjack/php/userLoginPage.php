@@ -48,7 +48,7 @@ include "databaseConfg.php";
     <footer>
         Legal mumbo jumbo goes here
     </footer>
-    <script src="./javascript/script.js"></script>
+    <script src="../javascript/script.js"></script>
     
      <?php
     if(isset($_POST['register'])){

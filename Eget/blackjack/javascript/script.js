@@ -100,7 +100,7 @@ function appendCards(array, who) {
       var cardBox = document.createElement("figure");
       var card = document.createElement("figcaption");
       var cardImg = document.createElement("img");
-      cardImg.src = "images/" + element[0][0] + ".png";
+      cardImg.src = "../images/" + element[0][0] + ".png";
       cardImg.alt = element[0][0];
       cardImg.classList = "card";
       if (element[0][1] == 11) {
@@ -122,7 +122,7 @@ function appendCards(array, who) {
       var cardBox = document.createElement("figure");
       var card = document.createElement("figcaption");
       var cardImg = document.createElement("img");
-      cardImg.src = "images/" + element[0][0] + ".png";
+      cardImg.src = "../images/" + element[0][0] + ".png";
       cardImg.alt = element[0][0];
       cardImg.classList = "card";
       if (element[0][1] == 11) {
@@ -146,7 +146,7 @@ function appendCards(array, who) {
       card.id = "unknownCaption";
       var cardImg = document.createElement("img");
       cardImg.id = "unknownCard";
-      cardImg.src = "images/Back of Card.png";
+      cardImg.src = "../images/Back of Card.png";
       cardImg.alt = "unknown";
       cardImg.classList = "card unknown";
       card.textContent = element; //"Unknown Card";
@@ -266,12 +266,11 @@ function Hit(who) {
 function Stand(who) {
   if (who == "Player") {
     DisableButtons();
+    revealDealerCard();
     if (dealerTotal < 17 && dealerTotal - 11 + acedealerTotal < 17) {
       playerStand = true;
-      revealDealerCard();
       drawExtraCard("Dealer");
     } else {
-      revealDealerCard();
       Stand("Other"); // REVEAL THE DEALERS CARDS WHEN THIS
     }
   } else {
@@ -287,9 +286,12 @@ function Stand(who) {
   }
 }
 function revealDealerCard() {
+  alert('hello');
   let caption = document.getElementById("unknownCaption");
   let image = document.getElementById("unknownCard");
-  image.src = "images/" + dealerHand[1][0][0] + ".png";
+  console.log(caption, image);
+  image.src = "../images/" + dealerHand[1][0][0] + ".png";
+  console.log(caption, image);
   if (dealerHand[1][0][1] == 11) {
     caption.textContent =
       dealerHand[1][0][0] + ", " + dealerHand[1][0][1] + "(1)";
