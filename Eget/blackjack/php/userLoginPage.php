@@ -46,14 +46,14 @@ include "databaseConfg.php";
         </form>
     </main>
     <footer>
-        Legal mumbo jumbo goes here
+        <p>Legal mumbo jumbo goes here</p>
     </footer>
-    <script src="../javascript/script.js"></script>
+    <!--<script src="../javascript/script.js"></script>-->
     
      <?php
-    if(isset($_POST['register'])){
+    if(isset($_POST['register']) && !empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])){
         $username = $_POST['username'];
-        $username = $_POST['email'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
         $repeatpassword = $_POST['repeatpassword'];
         $profilepic = $_FILES['profilepic']['name'];
@@ -67,11 +67,11 @@ include "databaseConfg.php";
         if(empty(mysqli_num_rows($results))){
             if($password == $repeatpassword){
                 $password = password_hash($password, PASSWORD_DEFAULT);
-                echo("<script>alert($username, $email, $password, $profilepic);</script>");
-                $sql = "INSERT INTO `user` (`username`, `email`, `passwrd`, `balance`, `profilepicture`) VALUES ('$username', '$email', '$password', '1000', NULL);";
-                //$result = $conn->query($sql);
+                echo("<script>console.log('$username', '$email', '$password', '$profilepic');</script>");
+                $sql = "INSERT INTO user (username, email, passwrd, balance, profilepicture) VALUES ('$username', '$email', '$password', '1000', '$profilepic')";
+                mysqli_query($conn, $sql);
+                $result = $conn->query($sql);
                 echo("<script>alert('$password');</script>");
-                $result = TRUE;
                 if($result){
                     echo("New record created succesfully");
                     $temp_name = $_FILES['profilepic']['tmp_name'];
