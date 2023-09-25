@@ -75,10 +75,6 @@ for (let i = 0; i < 2; i++) {
 let table = document.getElementById("playTable");
 let dealerSide = document.getElementById("dealerSideDiv");
 let playerSide = document.getElementById("playerSideDiv");
-let player = document.getElementById("playerScoreDiv");
-let dealer = document.getElementById("dealerScoreDiv");
-var playerTot = document.getElementById("playerScore");
-var dealerTot = document.getElementById("dealerScore");
 function appendCards(array, who) {
   let i = 0;
 
@@ -162,72 +158,11 @@ function appendCards(array, who) {
     }
   });
   if (who == "Player") {
-    if (aceplayerTotal == 0) {
-      if (playerTotal > 21) {
-        playerTot.textContent =
-          "Player: " + playerTotal + " which is over 21! Player busts";
-        playerTot.style = "background-color:red;";
-        Lost("Player");
-      } else {
-        playerTot.textContent = "Player: " + playerTotal;
-      }
-    } else {
-      if (playerTotal - 11 + aceplayerTotal > 21) {
-        playerTot.textContent =
-          "Player: " + (playerTotal - 11 + aceplayerTotal);
-        Lost("Dealer");
-      } else if (playerTotal > 21) {
-        "Player: " + (playerTotal - 11 + aceplayerTotal);
-      } else {
-        playerTot.textContent =
-          "Player: " +
-          playerTotal +
-          " (" +
-          (playerTotal - 11 + aceplayerTotal) +
-          ")";
-      }
-    }
-    player.appendChild(playerTot);
+    updateScore("Player");
   } else if (who == "Dealer") {
+    updateScore("Dealer");
     if (acedealerTotal == 0) {
-      if (dealerTotal > 21 && playerStand) {
-        dealerTot.textContent =
-          "Dealer: " + dealerTotal + " which is over 21! Dealer busts";
-        dealerTot.style = "background-color:red;";
-        Lost("Dealer");
-      } else if (dealerTotal > 17 && playerStand == true) {
-        dealerTot.textContent = "Dealer: " + dealerTotal;
-        Stand("Other");
-      } else if (playerStand) {
-        dealerTot.textContent = "Dealer: " + dealerTotal;
-      }
     } else {
-      if (dealerTotal >= 17 && playerStand) {
-        dealerTot.textContent =
-          "Dealer: " + (dealerTotal - 11 + acedealerTotal);
-        Stand("Other");
-      } else if (dealerTotal - 11 + acedealerTotal > 21 && playerStand) {
-        dealerTot.textContent =
-          "Dealer: " + (dealerTotal - 11 + acedealerTotal);
-        Lost("Dealer");
-      } else if (dealerTotal > 21 && playerStand) {
-        dealerTot.textContent =
-          "Dealer: " + (dealerTotal - 11 + acedealerTotal);
-      } else if (
-        dealerTotal - 11 + acedealerTotal >= 17 &&
-        playerStand == true
-      ) {
-        dealerTot.textContent =
-          "Dealer: " + (dealerTotal - 11 + acedealerTotal);
-        Stand("Other");
-      } else if (playerStand) {
-        dealerTot.textContent =
-          "Dealer: " +
-          dealerTotal +
-          " (" +
-          (dealerTotal - 11 + acedealerTotal) +
-          ")";
-      }
     }
     dealer.appendChild(dealerTot);
   }
@@ -245,6 +180,86 @@ function appendCards(array, who) {
     }
   }
 }
+function updateScore(who) {
+  switch (who) {
+    case "Player":
+      let player = document.getElementById("playerScoreDiv");
+      var playerTot = document.getElementById("playerScore");
+      if (aceplayerTotal == 0) {
+        if (playerTotal > 21) {
+          playerTot.textContent =
+            "Player: " + playerTotal + " which is over 21! Player busts";
+          playerTot.style = "background-color:red;";
+          Lost("Player");
+        } else {
+          playerTot.textContent = "Player: " + playerTotal;
+        }
+      } else {
+        let playerWithAce = (playerTotal - 11 + aceplayerTotal);
+        if (playerWithAce > 21) {
+          playerTot.textContent =
+            "Player: " + playerWithAce;
+          Lost("Dealer");
+        } else if (playerTotal > 21) {
+          "Player: " + playerWithAce;
+        } else {
+          playerTot.textContent =
+            "Player: " +
+            playerTotal +
+            " (" +
+            playerWithAce +
+            ")";
+        }
+      }
+      player.appendChild(playerTot);
+
+      break;
+    case "Dealer":
+      var dealerTot = document.getElementById("dealerScore");
+      let dealer = document.getElementById("dealerScoreDiv");
+      if (acedealerTotal == 0) {
+        if (dealerTotal > 21 && playerStand) {
+          dealerTot.textContent =
+            "Dealer: " + dealerTotal + " which is over 21! Dealer busts";
+          dealerTot.style = "background-color:red;";
+          Lost("Dealer");
+        } else if (dealerTotal > 17 && playerStand == true) {
+          dealerTot.textContent = "Dealer: " + dealerTotal;
+          Stand("Other");
+        } else if (playerStand) {
+          dealerTot.textContent = "Dealer: " + dealerTotal;
+        }
+      } else {
+        var dealerWithAce = dealerTotal - 11 + acedealerTotal;
+        if (dealerTotal >= 17 && playerStand) {
+          dealerTot.textContent = "Dealer: " + dealerWithAce;
+          if (dealerWithAce > playerTotal) {
+            Lost("Player");
+          } else {
+            Stand("Other");
+          }
+        } else if (dealerWithAce > 21 && playerStand) {
+          dealerTot.textContent = "Dealer: " + dealerWithAce;
+          Lost("Dealer");
+        } else if (dealerTotal > 21 && playerStand) {
+          dealerTot.textContent = "Dealer: " + dealerWithAce;
+          if (dealerWithAce > playerTotal) {
+            Lost("Player");
+          }
+          if (dealerWithAce > 17) {
+            Stand("Other");
+          }
+        } else if (dealerWithAce >= 17 && playerStand == true) {
+          dealerTot.textContent = "Dealer: " + dealerWithAce;
+          Stand("Other");
+        } else if (playerStand) {
+          dealerTot.textContent =
+            "Dealer: " + dealerTotal + " (" + dealerWithAce + ")";
+        }
+      }
+      break;
+  }
+}
 function drawExtraCard(who) {
   if (who == "Player") {
     let arr = [];
@@ -255,30 +270,39 @@ function drawExtraCard(who) {
   } else {
     let arr = [];
     cardDeck.shift();
-    arr.push(cardDeck[1]);
+    arr.push(cardDeck[0]);
     dealerHand.push(arr);
     appendCards(dealerHand, "Dealer");
   }
 }
-function Hit(who) {
+function Hit() {
   drawExtraCard("Player");
 }
 function Stand(who) {
+  revealDealerCard();
   if (who == "Player") {
     DisableButtons();
-    revealDealerCard();
     if (dealerTotal < 17 && dealerTotal - 11 + acedealerTotal < 17) {
       playerStand = true;
       drawExtraCard("Dealer");
+      Stand("Player");
     } else {
-      Stand("Other"); // REVEAL THE DEALERS CARDS WHEN THIS
+      alert("DEALER STAND");
+      Stand("Other");
     }
   } else {
+    alert("A");
     let hitButton = document.getElementById("hit");
     hitButton.disabled = true;
-    if (playerTotal > dealerTotal && playerTotal > !21) {
+    if (
+      playerTotal > dealerTotal ||
+      playerTotal - 11 + aceplayerTotal > dealerTotal
+    ) {
       Won("Player");
-    } else if (dealerTotal > playerTotal && dealerTotal > !21) {
+    } else if (
+      dealerTotal > playerTotal ||
+      dealerTotal - 11 + acedealerTotal > playerTotal
+    ) {
       Won("Dealer");
     } else {
       Draw();
@@ -286,12 +310,12 @@ function Stand(who) {
   }
 }
 function revealDealerCard() {
-  alert('hello');
   let caption = document.getElementById("unknownCaption");
   let image = document.getElementById("unknownCard");
   console.log(caption, image);
   image.src = "../images/" + dealerHand[1][0][0] + ".png";
   console.log(caption, image);
+  image.id = dealerHand[1][0][0];
   if (dealerHand[1][0][1] == 11) {
     caption.textContent =
       dealerHand[1][0][0] + ", " + dealerHand[1][0][1] + "(1)";
