@@ -51,6 +51,7 @@ include "databaseConfg.php";
     <!--<script src="../javascript/script.js"></script>-->
     
      <?php
+     // ANVÄND PRISMA FÖR ATT FIXA DATA BAS
     if(isset($_POST['register']) && !empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])){
         $username = $_POST['username'];
         $email = $_POST['email'];
